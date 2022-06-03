@@ -1,0 +1,42 @@
+body {
+  background-color: #eee;
+  color: #555;
+}
+
+#content {
+  background-color: #fff;
+  width: 50%;
+  margin: auto;
+  box-shadow: 5px 5px #ddd;
+}
+
+#content ul {
+  padding: 0;
+}
+
+.listItem {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  height: 50px;
+  padding: 0 20px;
+}
+
+.listItem img {
+  width: 20px;
+}
+
+#addNew {
+  font-style: italic;
+  color: #888;
+}
+
+#enterIcon {
+  width: 12px;
+}
+
+#check {
+  margin-right: 10px;
+}
