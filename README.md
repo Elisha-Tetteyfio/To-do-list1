@@ -11,18 +11,18 @@
 - JavaScript
 - Webpack
 
-## Live Demo (if available)
-
-[Live Demo Link](https://livedemo.com)
-
-
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
 
-- run the command `git clone https://github.com/Elisha-Tetteyfio/To-do-list.git` in your command line 
+- run the command `git clone https://github.com/Elisha-Tetteyfio/To-do-list1.git` in your command line 
 - switch to the project directory
+- run `npm i` to install dependencies
+- run `npm start` to startup the webpage
 - Enjoy ;)
+
+  ### NB:
+  You would need to install Node and any code editor of your choice
 
 
 ## Author
