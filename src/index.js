@@ -1,8 +1,12 @@
 // import _ from 'lodash';
 import './style.css';
+// import { filter } from 'lodash';
 import enterIcon from './Icons/enter.png';
 import syncIcon from './Icons/synchronize.svg';
-import menuIcon from './Icons/menu.png';
+import Task from './modules/Task.js';
+import {
+  removve, clearInput, addTask, updateTasks,
+} from './modules/functioning.js';
 
 const sync1 = document.querySelector('#sync1');
 const ic1 = `<img src="${syncIcon}" alt="o"></img>`;
@@ -10,44 +14,67 @@ sync1.innerHTML += ic1;
 const enter1 = document.querySelector('#enter1');
 const ec1 = `<img src="${enterIcon}" alt="v" id="enterIcon"></img>`;
 enter1.innerHTML += ec1;
+const clearButton = document.createElement('button');
+clearButton.classList.add('clearButton');
+clearButton.innerHTML = 'Clear all completed';
 
-const tasks = [
-  {
-    description: 'What to do',
-    completed: false,
-    index: 0,
-  },
-  {
-    description: 'Wake up',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'Code',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'Go to sleep',
-    completed: false,
-    index: 3,
-  },
-];
+const getTasks = () => {
+  let task;
+  if (localStorage.getItem('allTasks') === null) {
+    task = [];
+  } else {
+    task = JSON.parse(localStorage.getItem('allTasks'));
+  }
+  return task;
+};
 
-let tasksHTML = '';
-tasks.forEach((el) => {
-  tasksHTML += `
-  <li class="listItem taskItem"> 
-  <div>
-    <input type="checkbox" name="check" id="check">
-    <label for="check">${el.description}</label> 
-  </div>
-  <div class="iconContainer">
-    <img src = "${menuIcon}" alt="x"></img>
-  </div>
-  </li>
-`;
-});
+const allTasks = getTasks();
 
 const contentUl = document.querySelector('#contentUl');
-contentUl.innerHTML += tasksHTML;
+
+updateTasks(contentUl, allTasks);
+
+const checkLabel = document.querySelectorAll('.checkLabel');
+checkLabel.forEach((el) => {
+  el.addEventListener('click', (e) => {
+    e.target.setAttribute('contenteditable', true);
+    const id = parseInt(e.target.parentNode.parentNode.id, 10);
+
+    document.addEventListener('keypress', (ee) => {
+      if (ee.key === 'Enter') {
+        e.preventDefault();
+        e.target.setAttribute('contenteditable', false);
+        allTasks[id].description = e.target.innerHTML;
+        updateTasks(contentUl, allTasks);
+      }
+    });
+  });
+});
+
+let inp = document.querySelector('#inputTask');
+
+document.addEventListener('keypress', (e) => {
+  inp = document.querySelector('#inputTask');
+  if (e.key === 'Enter' && inp.value !== '') {
+    e.preventDefault();
+    addTask(new Task(inp.value), allTasks);
+    updateTasks(contentUl, allTasks);
+    clearInput(inp);
+    window.location.reload();
+  }
+});
+
+const deleteTask = document.querySelectorAll('.del');
+
+deleteTask.forEach((el) => {
+  el.addEventListener('click', (e) => {
+    e.preventDefault();
+    let { id } = e.target.parentNode.parentNode;
+    id = parseInt(id, 10);
+    removve(id, allTasks);
+    updateTasks(contentUl, allTasks);
+    window.location.reload();
+  });
+});
+
+contentUl.after(clearButton);

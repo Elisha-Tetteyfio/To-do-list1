@@ -12,6 +12,7 @@ body {
 
 #content ul {
   padding: 0;
+  margin: 0 auto;
 }
 
 .listItem {
@@ -24,6 +25,15 @@ body {
   padding: 0 20px;
 }
 
+.listItem input {
+  border: none;
+  outline: none;
+}
+
+.listItem input:placeholder-shown {
+  font-style: italic;
+}
+
 .listItem img {
   width: 20px;
 }
@@ -31,12 +41,30 @@ body {
 #addNew {
   font-style: italic;
   color: #888;
+  margin-bottom: 0;
+}
+
+#addNew div {
+  outline: none;
+}
+
+.checkLabel {
+  outline: none;
 }
 
 #enterIcon {
   width: 12px;
 }
 
-#check {
+.check {
   margin-right: 10px;
+}
+
+.clearButton {
+  width: 100%;
+  height: 60px;
+  border: none;
+  color: #888;
+  font-size: 17px;
+  margin-top: 0;
 }
