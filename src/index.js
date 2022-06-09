@@ -26,7 +26,7 @@ const getTasks = () => {
     task = JSON.parse(localStorage.getItem('allTasks'));
   }
   return task;
-}
+};
 
 const allTasks = getTasks();
 
