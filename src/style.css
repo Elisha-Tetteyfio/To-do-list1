@@ -60,6 +60,11 @@ body {
   margin-right: 10px;
 }
 
+.check:checked + .checkLabel {
+  text-decoration: line-through;
+  color: #888;
+}
+
 .clearButton {
   width: 100%;
   height: 60px;
