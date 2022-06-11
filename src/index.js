@@ -7,6 +7,7 @@ import Task from './modules/Task.js';
 import {
   removve, clearInput, addTask, updateTasks,
 } from './modules/functioning.js';
+import { removeChecked, setCheck } from './modules/interactive.js';
 
 const sync1 = document.querySelector('#sync1');
 const ic1 = `<img src="${syncIcon}" alt="o"></img>`;
@@ -78,3 +79,28 @@ deleteTask.forEach((el) => {
 });
 
 contentUl.after(clearButton);
+
+const aa = setCheck(allTasks);
+aa.forEach((el) => {
+  document.querySelector(`#check${el}`).checked = true;
+  allTasks[el].completed = true;
+});
+
+const checkBox = document.querySelectorAll('.check');
+checkBox.forEach((el) => {
+  const id = parseInt(el.parentNode.parentNode.id, 10);
+  el.addEventListener('change', () => {
+    if (el.checked) {
+      allTasks[id].completed = true;
+    } else {
+      allTasks[id].completed = false;
+    }
+    localStorage.setItem('allTasks', JSON.stringify(allTasks));
+  });
+});
+
+clearButton.addEventListener('click', () => {
+  removeChecked(allTasks);
+  updateTasks(contentUl, allTasks);
+  window.location.reload();
+});
