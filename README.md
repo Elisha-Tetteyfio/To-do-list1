@@ -11,6 +11,9 @@
 - JavaScript
 - Webpack
 
+## Live demo
+This is the link to the [live demo](https://elisha-tetteyfio.github.io/To-do-list1/)
+
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
