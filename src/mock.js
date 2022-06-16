@@ -25,5 +25,5 @@ export const removeChecked = (allTasks) => {
   arr.forEach((el) => {
     removve(el, allTasks);
   });
-  return(allTasks);
+  return (allTasks);
 };
